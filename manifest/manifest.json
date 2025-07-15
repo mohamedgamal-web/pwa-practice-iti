@@ -1,16 +1,61 @@
 {
-    "name": "Wow",
-    "short_name": "front",
+    "name": "PWA Practice - ITI",
+    "short_name": "PWA Practice",
+    "description": "A simple Progressive Web App demonstrating PWA principles and Service Workers",
     "theme_color": "#00ff00",
     "background_color": "#ffffff",
-    "display": "fullscreen",
+    "display": "standalone",
     "scope": "/",
     "start_url": "/",
+    "orientation": "portrait-primary",
+    "categories": ["education", "productivity"],
+    "lang": "en",
     "icons": [
+      {
+        "src": "./gold-star-16.png",
+        "type": "image/png",
+        "sizes": "16x16"
+      },
+      {
+        "src": "./gold-star-48.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      },
+      {
+        "src": "./gold-star-72.png",
+        "type": "image/png",
+        "sizes": "72x72"
+      },
+      {
+        "src": "./gold-star-96.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "./gold-star-128.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "./gold-star-144.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      },
+      {
+        "src": "./gold-star-152.png",
+        "type": "image/png",
+        "sizes": "152x152"
+      },
+      {
+        "src": "./gold-star-180.png",
+        "type": "image/png",
+        "sizes": "180x180"
+      },
       {
         "src": "./gold-star-192.png",
         "type": "image/png",
-        "sizes": "192x192"
+        "sizes": "192x192",
+        "purpose": "any maskable"
       },
       {
         "src": "./gold-star-256.png",
@@ -20,7 +65,24 @@
       {
         "src": "./gold-star-512.png",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Other Page",
+        "short_name": "Other",
+        "description": "Go to the other page",
+        "url": "/other.html",
+        "icons": [{ "src": "./gold-star-192.png", "sizes": "192x192" }]
+      },
+      {
+        "name": "Another Page",
+        "short_name": "Another",
+        "description": "Go to another page",
+        "url": "/below/another.html",
+        "icons": [{ "src": "./gold-star-192.png", "sizes": "192x192" }]
       }
     ]
   }
