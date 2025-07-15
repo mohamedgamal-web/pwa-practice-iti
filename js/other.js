@@ -184,20 +184,21 @@ function setupCacheChecking() {
                 const ourCache = await caches.open('our-app');
                 const cachedRequests = await ourCache.keys();
                 
-                let info = `<strong>Cache Names:</strong> ${cacheNames.join(', ')}<br>`;
-                info += `<strong>Cached Files:</strong><br>`;
+                let info = `<div style="color: #2c3e50; font-weight: bold; margin-bottom: 0.5rem;">Cache Names:</div>`;
+                info += `<div style="color: #5a6c7d; margin-bottom: 1rem;">${cacheNames.join(', ')}</div>`;
+                info += `<div style="color: #2c3e50; font-weight: bold; margin-bottom: 0.5rem;">Cached Files:</div>`;
                 
                 cachedRequests.forEach(request => {
-                    info += `• ${request.url}<br>`;
+                    info += `<div style="color: #5a6c7d; margin-left: 1rem;">• ${request.url}</div>`;
                 });
                 
                 cacheInfo.innerHTML = info;
             } else {
-                cacheInfo.innerHTML = 'Cache API not supported';
+                cacheInfo.innerHTML = '<div style="color: #c62828;">Cache API not supported</div>';
             }
         } catch (error) {
             console.error('Error checking cache:', error);
-            cacheInfo.innerHTML = 'Error checking cache';
+            cacheInfo.innerHTML = '<div style="color: #c62828;">Error checking cache</div>';
         }
     });
 }

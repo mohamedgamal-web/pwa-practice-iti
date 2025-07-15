@@ -164,11 +164,11 @@ h1::after {
 
 /* Form Styles */
 .form-container {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   padding: 2rem;
   margin: 2rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .form-group {
@@ -177,7 +177,11 @@ h1::after {
 
 .form-group label {
   display: block;
-  color: white;
+  color: #2c3e50;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  display: inline-block;
   font-weight: 600;
   margin-bottom: 0.5rem;
   font-size: 1rem;
@@ -259,23 +263,23 @@ h1::after {
 
 /* Data Display */
 .data-display {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
   padding: 1.5rem;
   margin: 1rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
 }
 
 .data-display strong {
-  color: white;
+  color: #2c3e50;
   font-size: 1.1rem;
   display: block;
   margin-bottom: 0.5rem;
 }
 
 .data-display span {
-  color: #f0f0f0;
+  color: #5a6c7d;
   font-size: 1rem;
   font-weight: 500;
 }
@@ -289,7 +293,8 @@ h1::after {
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
-  color: white;
+  color: #2c3e50;
+  background: rgba(255, 255, 255, 0.95);
   max-height: 300px;
   overflow-y: auto;
   line-height: 1.4;
