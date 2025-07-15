@@ -145,40 +145,77 @@ function addInteractiveContent() {
     
     // Create a container for our interactive content
     const contentContainer = document.createElement('div');
-    contentContainer.style.cssText = `
-        margin: 40px auto;
-        max-width: 600px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-    `;
+    contentContainer.className = 'card fade-in-up';
     
     // Add a counter to demonstrate interactivity
     const counterSection = document.createElement('div');
     counterSection.innerHTML = `
         <h3>Interactive Counter</h3>
-        <p>Current count: <span id="counter-value">0</span></p>
-        <button id="increment-btn" style="margin: 5px; padding: 10px 20px; background: #49aafa; color: white; border: none; border-radius: 5px; cursor: pointer;">+1</button>
-        <button id="decrement-btn" style="margin: 5px; padding: 10px 20px; background: #e409f8; color: white; border: none; border-radius: 5px; cursor: pointer;">-1</button>
-        <button id="reset-btn" style="margin: 5px; padding: 10px 20px; background: #20710f; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset</button>
+        <p>Test the offline functionality by incrementing this counter, then going offline and refreshing the page.</p>
+        <div class="counter-display" id="counter-value">0</div>
+        <div>
+            <button id="increment-btn" class="btn btn-primary">+1</button>
+            <button id="decrement-btn" class="btn btn-secondary">-1</button>
+            <button id="reset-btn" class="btn btn-success">Reset</button>
+        </div>
     `;
     
     contentContainer.appendChild(counterSection);
     
     // Add network status indicator
     const networkSection = document.createElement('div');
+    networkSection.className = 'card fade-in-up';
     networkSection.innerHTML = `
         <h3>Network Status</h3>
-        <p>Status: <span id="network-status">Checking...</span></p>
+        <p>This demonstrates real-time network status detection - try going offline!</p>
+        <div class="status-indicator" id="network-status">Checking...</div>
         <p><small>This demonstrates offline functionality</small></p>
     `;
     
     contentContainer.appendChild(networkSection);
     
+    // Add PWA info section
+    const pwaInfoSection = document.createElement('div');
+    pwaInfoSection.className = 'card fade-in-up';
+    pwaInfoSection.innerHTML = `
+        <h3>PWA Features</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon">SW</div>
+                <div class="info-text">
+                    <strong>Service Worker</strong><br>
+                    Enables offline functionality with <span class="info-code">cache-first</span> strategy
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📱</div>
+                <div class="info-text">
+                    <strong>Installable</strong><br>
+                    Can be installed as a native app on any device
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">⚡</div>
+                <div class="info-text">
+                    <strong>Fast Loading</strong><br>
+                    Cached resources load instantly, even offline
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🔄</div>
+                <div class="info-text">
+                    <strong>Auto Updates</strong><br>
+                    Service worker handles app updates automatically
+                </div>
+            </div>
+        </div>
+    `;
+    
+    contentContainer.appendChild(pwaInfoSection);
+    
     // Insert the content after the h1 element
-    const h1 = document.querySelector('h1');
-    h1.parentNode.insertBefore(contentContainer, h1.nextSibling);
+    const mainContainer = document.querySelector('.main-container');
+    mainContainer.appendChild(contentContainer);
     
     // Add event listeners for the counter
     setupCounterFunctionality();
@@ -235,10 +272,10 @@ function monitorNetworkStatus() {
     function updateNetworkStatus() {
         if (navigator.onLine) {
             networkStatus.textContent = '🟢 Online';
-            networkStatus.style.color = '#20710f';
+            networkStatus.className = 'status-indicator status-online';
         } else {
             networkStatus.textContent = '🔴 Offline';
-            networkStatus.style.color = '#ff4444';
+            networkStatus.className = 'status-indicator status-offline';
         }
     }
     

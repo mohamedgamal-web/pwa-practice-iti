@@ -36,18 +36,7 @@ function initializeAnotherPageFeatures() {
  */
 function showPathInfo() {
     const pathInfo = document.createElement('div');
-    pathInfo.style.cssText = `
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 5px;
-        font-size: 12px;
-        z-index: 1000;
-        max-width: 300px;
-    `;
+    pathInfo.className = 'info-panel path-info';
     
     pathInfo.innerHTML = `
         <strong>Path Info:</strong><br>
@@ -78,17 +67,7 @@ function addNavigationHelper() {
     
     // Show keyboard shortcuts
     const shortcutsInfo = document.createElement('div');
-    shortcutsInfo.style.cssText = `
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        background: rgba(255,255,255,0.9);
-        color: #333;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 12px;
-        z-index: 1000;
-    `;
+    shortcutsInfo.className = 'info-panel shortcuts-info';
     
     shortcutsInfo.innerHTML = `
         <strong>Keyboard Shortcuts:</strong><br>
@@ -107,67 +86,52 @@ function addAnotherPageContent() {
     
     // Create content container
     const contentContainer = document.createElement('div');
-    contentContainer.style.cssText = `
-        margin: 40px auto;
-        max-width: 600px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        text-align: center;
-    `;
     
     // Add a simple game to demonstrate PWA interactivity
     const gameSection = document.createElement('div');
+    gameSection.className = 'card fade-in-up';
     gameSection.innerHTML = `
         <h3>Simple PWA Game</h3>
-        <p>Click the button as fast as you can!</p>
-        <div style="margin: 20px 0;">
-            <button id="game-button" style="
-                width: 100px; 
-                height: 100px; 
-                border-radius: 50%; 
-                border: none; 
-                background: #20710f; 
-                color: white; 
-                font-size: 18px; 
-                cursor: pointer;
-                transition: all 0.1s;
-            ">Click Me!</button>
-        </div>
-        <div>
-            <p>Score: <span id="game-score">0</span></p>
-            <p>Time: <span id="game-time">30</span>s</p>
-            <button id="start-game" style="padding: 10px 20px; background: #8fd581; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Start Game
-            </button>
+        <p>Test PWA interactivity with this simple clicking game. Your high score is saved offline!</p>
+        <div class="game-container">
+            <button id="game-button" class="game-button">Click Me!</button>
+            <div class="game-stats">
+                <div class="game-stat">
+                    <span class="game-stat-value" id="game-score">0</span>
+                    <span class="game-stat-label">Score</span>
+                </div>
+                <div class="game-stat">
+                    <span class="game-stat-value" id="game-time">30</span>
+                    <span class="game-stat-label">Time</span>
+                </div>
+            </div>
+            <button id="start-game" class="btn btn-primary">Start Game</button>
         </div>
     `;
     
-    contentContainer.appendChild(gameSection);
+    const mainContainer = document.querySelector('.main-container');
+    mainContainer.appendChild(gameSection);
     
     // Add offline storage demo
     const storageSection = document.createElement('div');
+    storageSection.className = 'card bounce-in';
     storageSection.innerHTML = `
         <h3>Offline Storage Demo</h3>
-        <p>This data persists even when offline:</p>
-        <div style="margin: 20px 0;">
-            <input type="text" id="storage-input" placeholder="Enter data to store..." 
-                   style="padding: 8px; margin: 5px; border: none; border-radius: 3px; width: 200px;">
-            <button id="save-storage" style="padding: 8px 15px; background: #20710f; color: white; border: none; border-radius: 3px; cursor: pointer;">
+        <p>Add items to demonstrate offline data persistence. This works even when you're offline!</p>
+        <div class="storage-container">
+            <div class="storage-input-group">
+                <input type="text" id="storage-input" class="storage-input" placeholder="Enter data to store...">
+                <button id="save-storage" class="btn btn-success">
                 Save
-            </button>
-        </div>
-        <div id="stored-items" style="text-align: left; max-height: 200px; overflow-y: auto; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
-            <!-- Stored items will appear here -->
+                </button>
+            </div>
+            <div id="stored-items" class="storage-items">
+                <!-- Stored items will appear here -->
+            </div>
         </div>
     `;
     
-    contentContainer.appendChild(storageSection);
-    
-    // Insert after h1
-    const h1 = document.querySelector('h1');
-    h1.parentNode.insertBefore(contentContainer, h1.nextSibling);
+    mainContainer.appendChild(storageSection);
     
     // Setup game functionality
     setupSimpleGame();
@@ -204,7 +168,12 @@ function setupSimpleGame() {
             }, 100);
             
             // Change button color randomly
-            const colors = ['#20710f', '#e409f8', '#49aafa', '#ff6b6b'];
+            const colors = [
+                'linear-gradient(45deg, #4facfe, #00f2fe)',
+                'linear-gradient(45deg, #667eea, #764ba2)',
+                'linear-gradient(45deg, #f093fb, #f5576c)',
+                'linear-gradient(45deg, #56ab2f, #a8e6cf)'
+            ];
             gameButton.style.background = colors[Math.floor(Math.random() * colors.length)];
         }
     });
@@ -241,7 +210,7 @@ function setupSimpleGame() {
         clearInterval(gameTimer);
         startButton.textContent = 'Start Game';
         startButton.disabled = false;
-        gameButton.style.background = '#20710f';
+        gameButton.style.background = 'linear-gradient(45deg, #4facfe, #00f2fe)';
         
         // Save high score
         const highScore = localStorage.getItem('pwa-game-highscore') || 0;
@@ -301,19 +270,19 @@ function setupStorageDemo() {
         const items = JSON.parse(localStorage.getItem('pwa-stored-items') || '[]');
         
         if (items.length === 0) {
-            storedItemsContainer.innerHTML = '<p style="color: #ccc; font-style: italic;">No items stored yet</p>';
+            storedItemsContainer.innerHTML = '<div class="empty-state">No items stored yet</div>';
             return;
         }
         
         let html = '';
         items.forEach((item, index) => {
             html += `
-                <div style="margin: 5px 0; padding: 8px; background: rgba(255,255,255,0.1); border-radius: 3px; display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <strong>${item.text}</strong><br>
-                        <small style="color: #ccc;">${item.timestamp}</small>
+                <div class="storage-item">
+                    <div class="storage-item-content">
+                        <div class="storage-item-text">${item.text}</div>
+                        <div class="storage-item-time">${item.timestamp}</div>
                     </div>
-                    <button onclick="deleteItem(${index})" style="background: #ff4444; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 12px;">
+                    <button onclick="deleteItem(${index})" class="storage-item-delete">
                         Delete
                     </button>
                 </div>
