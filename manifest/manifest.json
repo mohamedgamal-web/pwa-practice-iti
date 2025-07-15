@@ -1,0 +1,26 @@
+{
+    "name": "Wow",
+    "short_name": "front",
+    "theme_color": "#00ff00",
+    "background_color": "#ffffff",
+    "display": "fullscreen",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "./gold-star-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./gold-star-256.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      },
+      {
+        "src": "./gold-star-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
